@@ -4,9 +4,20 @@
     padding: 0;
 }
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: red;
+}
+
+nav a {
+    display: inline-block;
+}
+
 body {
     background: linear-gradient(to bottom, navy, cadetblue);
     height: 100vh;
+    align-content: center;
 }
 
 main {
@@ -15,14 +26,23 @@ main {
     justify-content: center;
 }
 
-.flashCard {
+.answerChoice {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 20px;
+
+}
+.questions {
+    margin-top: 30%;
     width: 75%;
-    height: 500px;
+    padding: 20px;
     background-color: white;
-    margin-top: 20%;
+    border: 3px solid navy;
+    border-radius: 15px;
 }
 
-ul {
-    list-style-type: none;
+.questions h2 {
+    margin-bottom: 50px;
 }
+
 
