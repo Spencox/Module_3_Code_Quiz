@@ -1,9 +1,16 @@
-* {
+*, *::before, ::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
+/* Color Variables */
+:root {
+    --cardColor: whitesmoke;
+}
+
+/*----------------------------- Navigation Bar --------------------------*/
 nav {
     display: flex;
     justify-content: space-between;
@@ -14,35 +21,64 @@ nav a {
     display: inline-block;
 }
 
-body {
+body {   
     background: linear-gradient(to bottom, navy, cadetblue);
-    height: 100vh;
-    align-content: center;
 }
 
 main {
     display: flex;
-    align-content: center;
+    width: 100vw;
+    height: 100vh;
     justify-content: center;
+    align-items: center;
 }
 
-.answerChoice {
-    border: 1px solid black;
+.start {
+    font-weight: 600;
+    font-size: 1.5em;
     padding: 10px;
-    margin: 20px;
-
-}
-.questions {
-    margin-top: 30%;
-    width: 75%;
-    padding: 20px;
-    background-color: white;
-    border: 3px solid navy;
-    border-radius: 15px;
-}
-
-.questions h2 {
-    margin-bottom: 50px;
 }
 
 
+.start-or-next {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-visible {
+    display: none;
+}
+
+/*------------------------------ Quiz Area ------------------------------*/
+.card-container {
+    max-width: 80%;
+    background-color: var(--cardColor);
+    border-radius: 10px;
+    padding: 10px;
+}
+.next {
+    font-weight: 600;
+    font-size: 1.2em;
+    padding: 5px;
+}
+
+
+/*------------------------------- Answers -------------------------------*/
+.answers {
+
+}
+
+.answer-choice {
+    width:100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.answer-choice.wrong {
+    background-color: rgb(229, 71, 71);
+}
+
+.answer-choice.correct {
+    background-color: rgb(114, 228, 114);
+}
