@@ -25,6 +25,9 @@ Coding Boot Camp. (n.d.). Professional Readme Guide. GitHub. https://coding-boot
 
 Web Dev Simplified. (2019, June 15th). Build a Quiz App With Javascript. YouTube. https://www.youtube.com/watch?v=riDzcEQbX6k 
 
+Mozilla. (n.d.). Element.classList. MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
+
+OpenAI. (2023, October 8). Create 10 random beginner level JavaScript quiz questions in the following format. ChatGPT by OpenAI. [Webpage]. https://www.chatgpt.com/blog/beginner-javascript-quiz-questions
 
 ## Features
 
