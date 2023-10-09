@@ -29,6 +29,12 @@ Mozilla. (n.d.). Element.classList. MDN Web Docs. https://developer.mozilla.org/
 
 OpenAI. (2023, October 8). Create 10 random beginner level JavaScript quiz questions in the following format. ChatGPT by OpenAI. [Webpage]. https://www.chatgpt.com/blog/beginner-javascript-quiz-questions
 
+CITE - https://www.youtube.com/watch?v=Pt8RyyUWCtM
+
+Mozilla. (n.d.). text-shadow. MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow
+
+Web.dev. (n.d.). CSS Border Animations. Web.dev. https://web.dev/css-border-animations/
+
 ## Features
 
 If your project has a lot of features, list them here.
