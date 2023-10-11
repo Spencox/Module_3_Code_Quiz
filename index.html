@@ -12,16 +12,16 @@
     <body>
         <header>
             <nav>
-                <a href="#"><h3>High Scores</h3></a>
-                <a href="#about_me">Leaderboard</a><
-                <a href="#contact">Timer</a>
+                <h2>Code Quizinator</h2>
+                <ul>
+                    <li><a href="#about_me">High Scores</a></li>
+                </ul>
             </nav>
         </header>
         <main>
             <div class="card-container">
                 <div id = question-container class="not-visible">
                     <div id="question">Question</div>
-                    <!-- Come in and redo from buttons----------------------------------------------->
                     <div id="answer-choices" class="answers">
                         <button class="answer-choice">Answer Choice 1</button>
                         <button class="answer-choice">Answer Choice 2</button>
@@ -36,6 +36,9 @@
                 <div class="start-or-next">
                     <button id="start" class="start">Start Game</button>
                     <button id="next" class ="next not-visible">Next</button>
+                </div>
+                <div id="shot-clock" class="not-visible">
+                    <h3 id="timer">Timer</h3>
                 </div>
         </main>
         <script src="./assets/js/script.js"></script>

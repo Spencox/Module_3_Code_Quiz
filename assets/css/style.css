@@ -12,13 +12,36 @@
 
 /*----------------------------- Navigation Bar --------------------------*/
 nav {
+    width: 100%;
+    margin: auto;
+    padding: 10px 0;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    background-color: red;
+    position: fixed;
+    top: 0;
+    background-color: var(--cardColor);
+    z-index: 100;
 }
 
-nav a {
+nav h2 {
+    width: auto;
+    color: navy;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+nav ul li {
+    list-style: none;
     display: inline-block;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-weight: 600;
+    color: navy;
+    text-transform: up;
 }
 
 body {   
@@ -44,6 +67,7 @@ main {
 .start {
     font-weight: 600;
     font-size: 1.5em;
+    cursor: pointer;
     padding: 10px;
 }
 
@@ -59,6 +83,7 @@ main {
 
 /*------------------------------ Quiz Area ------------------------------*/
 .card-container {
+    position: relative;
     max-width: 80%;
     min-height: 300px;
     background-color: var(--cardColor);
@@ -67,12 +92,20 @@ main {
 }
 
 #question {
-    padding: 10px;
-    margin: 10px;
+    padding: 20px;
+    margin: 20px;
     font-size: 30px;
     font-weight: 500;
     color: navy;
     text-shadow: 1px 1px 2px navy;
+}
+
+#shot-clock {
+    position: absolute;
+    right: 5px;
+    top:0;
+    padding: 10px;
+    color: navy;
 }
 
 .next {

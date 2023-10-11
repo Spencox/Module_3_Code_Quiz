@@ -5,20 +5,48 @@ const startPageEl = document.getElementById('start-screen');
 const questionPageEl = document.getElementById('question-container');
 const questionEl = document.getElementById('question');
 const answerChoicesEl = document.getElementById('answer-choices');
+const countdownEl = document.getElementById('shot-clock');
+const timerEl = document.getElementById('timer');
 
 // general variables
 let randomQuestions; 
 let questionIndex;
+let startingTimerSec = 300;
 
 // functions
 function startQuiz() {
     startPageEl.classList.add('not-visible');
     starButtonEl.classList.add('not-visible');
+    countdownEl.classList.remove('not-visible');
     questionPageEl.classList.remove('not-visible');
     nextButtonEl.classList.remove('not-visible');
     randomQuestions = questions.sort(() => Math.random() -0.5 ); // investigate changing random method
+    setCountdownTimer();
     questionIndex = 0;
     setNextQuestion();
+}
+
+function setCountdownTimer() {
+    var timerInterval = setInterval(function() {
+    secondsLeft--;
+    timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
+
+    if(secondsLeft === 0) {
+      clearTime(timerInterval);
+      gameOverScreen();
+    }
+
+  }, 1000);
+}
+
+// clear out timer values
+function clearTime() {
+
+}
+
+// Show final screen with timer and high score input.
+function gameOverScreen() {
+    
 }
 
 function clearCard(){
