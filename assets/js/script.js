@@ -17,16 +17,16 @@ const questions = [
             { option: 'const', correct: false },
             { option: 'variable', correct: false },
         ],
-    }//,
-    // {
-    //     question: "What is the result of '5 + '5' in JavaScript?",
-    //     answers: [
-    //         { option: '10', correct: false },
-    //         { option: '55', correct: true },
-    //         { option: '5 + 5', correct: false },
-    //         { option: 'Error', correct: false },
-    //     ],
-    // },
+    },
+    {
+        question: "What is the result of '5 + '5' in JavaScript?",
+        answers: [
+            { option: '10', correct: false },
+            { option: '55', correct: true },
+            { option: '5 + 5', correct: false },
+            { option: 'Error', correct: false },
+        ],
+    } //,
     // {
     //     question: "Which function is used to print something to the console in JavaScript?",
     //     answers: [
@@ -100,7 +100,7 @@ const questionPageEl = document.getElementById('question-container');
 const questionEl = document.getElementById('question');
 const answerChoicesEl = document.getElementById('answer-choices');
 const countdownEl = document.getElementById('shot-clock');
-const shotClockEl = document.getElementById('ti');
+const highScoreEl = document.getElementById('high-score');
 
 // general variables
 let randomQuestions; 
@@ -118,12 +118,16 @@ function startQuiz() {
     starButtonEl.classList.add('not-visible');
     questionPageEl.classList.remove('not-visible');
     nextButtonEl.classList.remove('not-visible');
+    // reset game points
+    userPts = 0;
+    // shuffle questions
     randomQuestions = questions.sort(() => Math.random() -0.5 ); // investigate changing random method
     setCountdownTimer();
     questionIndex = 0;
     setNextQuestion();
 }
 
+// function calculates number ofm inputs and seconds remaining and returns
 function minAndSec() {
     secondsLeft--;
     let m = Math.floor(secondsLeft/60);
@@ -152,7 +156,7 @@ function setCountdownTimer() {
 
 // Show final screen with timer and high score input.
 function gameOverScreen() {
-    console.log("**********************Game Over*******************");
+    console.log("FINAL SCORE WAS: " + userPts);
 }
 
 function clearCard(){
@@ -172,9 +176,19 @@ function viewQuestion(question) {
          if(answer.correct){
             button.dataset.correct = answer.correct;
          }
-         button.addEventListener('click', selectAnswer);
+         button.addEventListener('click', () => {
+         selectAnswer();
+         checkAnswer(button.dataset.correct);
+        });
          answerChoicesEl.appendChild(button);
     })
+}
+
+function checkAnswer(userAnswer) {
+    console.log("Event: " + userAnswer);
+    if (userAnswer){
+        userPts += ptsPerQuestion;
+    }
 }
 
 function setNextQuestion(){
@@ -209,7 +223,6 @@ function setClass(buttonEl, correct) {
 }
 
 function clearClassStatus(eL) {
-    console.log("Clear Class: " + eL);
     eL.classList.remove('correct');
     eL.classList.remove('wrong');
 }
@@ -217,5 +230,5 @@ function clearClassStatus(eL) {
 // Event listener for clicking start button
 starButtonEl.addEventListener('click', startQuiz);
 nextButtonEl.addEventListener('click', nextQuestion);
-
+highScoreEl.addEventListener('click', gameOverScreen);
 

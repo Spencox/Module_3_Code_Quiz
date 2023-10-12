@@ -24,25 +24,23 @@ nav {
     z-index: 100;
 }
 
-nav h2 {
+nav h2, h3 {
     width: auto;
     color: navy;
     text-decoration: none;
-    margin-left: 10px;
+    margin: 10px;
 }
 
-nav a {
-    text-decoration: none;
-    font-weight: 600;
-    color: navy;
-    text-transform: uppercase;
-    margin: 10px;
+nav h3:hover {
+    color: cadetblue;
+    cursor: pointer;
 }
 
 #shot-clock {
     right: 5px;
     top:0;
     padding: 10px;
+    font-size: larger;
     color: navy;
 }
 
@@ -93,8 +91,8 @@ main {
 }
 
 #question {
-    padding: 10px;
-    margin: 20px 0;
+    padding: 10px 10px 20px 10px;
+    margin-bottom: 20px;
     font-size: 30px;
     font-weight: 500;
     color: navy;
