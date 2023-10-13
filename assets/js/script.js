@@ -94,13 +94,16 @@ const questions = [
 
 // DOM selector variables
 const starButtonEl = document.getElementById('start');
-const nextButtonEl = document.getElementById('next')
-const startPageEl = document.getElementById('start-screen');
+const nextButtonEl = document.getElementById('next');
+const startPageEl = document.getElementById('start-page');
 const questionPageEl = document.getElementById('question-container');
 const questionEl = document.getElementById('question');
 const answerChoicesEl = document.getElementById('answer-choices');
 const countdownEl = document.getElementById('shot-clock');
 const highScoreEl = document.getElementById('high-score');
+const endPageEl = document.getElementById('end-page');
+const userScoreEl = document.getElementById('user-score');
+const highScorePageEl = document.getElementById('high-score-page');
 
 // general variables
 let randomQuestions; 
@@ -156,6 +159,9 @@ function setCountdownTimer() {
 // Show final screen with timer and high score input.
 function gameOverScreen() {
     console.log("FINAL SCORE WAS: " + userPts);
+    userScoreEl.textContent = "You scored " + Math.floor(userPts) + " out of 100!";
+    questionPageEl.classList.add('not-visible')
+    endPageEl.classList.remove('not-visible');
 }
 
 function clearCard(){

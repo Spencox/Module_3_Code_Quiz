@@ -28,13 +28,29 @@
                         <button class="answer-choice">Answer Choice 4</button>
                     </div>
                 </div>
-                <div id="start-screen">
-                    <h2>Coding Quiz</h2>
-                    <p>Try to answer the coding questions within the time limit. If you guess incorrectly you will have 2 seconds taken off your time. Press start to begin.</p> 
+                <div id='start-page' class="start-screen">
+                    <h2>Coding Quiz Game</h2>
+                    <p>Try to answer the coding questions within the time limit. Answer correctly and rack up points and get your name on top of the High Score Leaderboard. Answer incorrectly and lose 5 seconds off the clock and no points. Good Luck!. Press start to begin.</p> 
                 </div>
                 <div class="start-or-next">
                     <button id="start" class="start">Start Game</button>
                     <button id="next" class ="next not-visible">Next</button>
+                </div>
+                <div id='end-page' class="end-screen not-visible">
+                    <h2>Game Over</h2>
+                    <h3 id="user-score">Toots</h3>
+                    <p>Phew! The quiz is done....</p>
+                    <form> 
+                        <label for="scoreboard">Enter Name or Initials</label>:
+                        <input id="scoreboard type="text" />
+                        <button id="post-score">Submit</button>
+                    </form> 
+                </div>
+                <div id='high-score-page' class="high-scores not-visible">
+                    <h2>High Scores</h2>
+                    <ol>
+                        List
+                    </ol> 
                 </div>
         </main>
         <script src="./assets/js/script.js"></script>
