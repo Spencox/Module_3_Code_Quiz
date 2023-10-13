@@ -109,7 +109,7 @@ let ptsPerQuestion = 100/questions.length;
 let userPts;
 let quizFinished = false;
 let timer;
-let secondsLeft = 11;
+let secondsLeft = 61;
 
 // functions
 function startQuiz() {
@@ -139,7 +139,6 @@ function minAndSec() {
 function setCountdownTimer() {
     timer = setInterval(function() {
         countdownEl.textContent = "Timer: " + minAndSec();
-        console.log("QuizFinished: " + quizFinished);
         if (secondsLeft >= 0){
             if (quizFinished){
                 clearInterval(timer);
@@ -178,7 +177,7 @@ function viewQuestion(question) {
          }
          button.addEventListener('click', () => {
             selectAnswer(button.dataset.correct);
-         });
+         }, {once: true});
          answerChoicesEl.appendChild(button);
     })
 }
@@ -197,6 +196,12 @@ function selectAnswer(userAnswer) {
     // check if selected answer is correct
     if (userAnswer){
         userPts += ptsPerQuestion;
+    } else {
+        if (secondsLeft >= 5) {
+            secondsLeft -= 5;
+        } else {
+            gameOverScreen();
+        }
     }
     // assign right or wrong values answer verification    
     let choiceArr = Array.from(answerChoicesEl.children);
