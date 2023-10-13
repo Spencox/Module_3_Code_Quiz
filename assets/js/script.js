@@ -177,18 +177,10 @@ function viewQuestion(question) {
             button.dataset.correct = answer.correct;
          }
          button.addEventListener('click', () => {
-         selectAnswer();
-         checkAnswer(button.dataset.correct);
-        });
+            selectAnswer(button.dataset.correct);
+         });
          answerChoicesEl.appendChild(button);
     })
-}
-
-function checkAnswer(userAnswer) {
-    console.log("Event: " + userAnswer);
-    if (userAnswer){
-        userPts += ptsPerQuestion;
-    }
 }
 
 function setNextQuestion(){
@@ -201,7 +193,12 @@ function nextQuestion() {
     setNextQuestion();
 }
 
-function selectAnswer() {
+function selectAnswer(userAnswer) {
+    // check if selected answer is correct
+    if (userAnswer){
+        userPts += ptsPerQuestion;
+    }
+    // assign right or wrong values answer verification    
     let choiceArr = Array.from(answerChoicesEl.children);
     choiceArr.forEach(button => {
         setClass(button, button.dataset.correct);
