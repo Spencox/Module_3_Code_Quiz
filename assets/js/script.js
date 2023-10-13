@@ -17,16 +17,16 @@ const questions = [
             { option: 'const', correct: false },
             { option: 'variable', correct: false },
         ],
-    }//,
-    // {
-    //     question: "What is the result of '5 + '5' in JavaScript?",
-    //     answers: [
-    //         { option: '10', correct: false },
-    //         { option: '55', correct: true },
-    //         { option: '5 + 5', correct: false },
-    //         { option: 'Error', correct: false },
-    //     ],
-    // },
+    },
+    {
+        question: "What is the result of '5 + '5' in JavaScript?",
+        answers: [
+            { option: '10', correct: false },
+            { option: '55', correct: true },
+            { option: '5 + 5', correct: false },
+            { option: 'Error', correct: false },
+        ],
+    } //,
     // {
     //     question: "Which function is used to print something to the console in JavaScript?",
     //     answers: [
@@ -94,13 +94,16 @@ const questions = [
 
 // DOM selector variables
 const starButtonEl = document.getElementById('start');
-const nextButtonEl = document.getElementById('next')
-const startPageEl = document.getElementById('start-screen');
+const nextButtonEl = document.getElementById('next');
+const startPageEl = document.getElementById('start-page');
 const questionPageEl = document.getElementById('question-container');
 const questionEl = document.getElementById('question');
 const answerChoicesEl = document.getElementById('answer-choices');
 const countdownEl = document.getElementById('shot-clock');
-const shotClockEl = document.getElementById('ti');
+const highScoreEl = document.getElementById('high-score');
+const endPageEl = document.getElementById('end-page');
+const userScoreEl = document.getElementById('user-score');
+const highScorePageEl = document.getElementById('high-score-page');
 
 // general variables
 let randomQuestions; 
@@ -109,7 +112,7 @@ let ptsPerQuestion = 100/questions.length;
 let userPts;
 let quizFinished = false;
 let timer;
-let secondsLeft = 11;
+let secondsLeft = 61;
 
 // functions
 function startQuiz() {
@@ -118,12 +121,16 @@ function startQuiz() {
     starButtonEl.classList.add('not-visible');
     questionPageEl.classList.remove('not-visible');
     nextButtonEl.classList.remove('not-visible');
+    // reset game points
+    userPts = 0;
+    // shuffle questions
     randomQuestions = questions.sort(() => Math.random() -0.5 ); // investigate changing random method
     setCountdownTimer();
     questionIndex = 0;
     setNextQuestion();
 }
 
+// function calculates number ofm inputs and seconds remaining and returns
 function minAndSec() {
     secondsLeft--;
     let m = Math.floor(secondsLeft/60);
@@ -135,7 +142,6 @@ function minAndSec() {
 function setCountdownTimer() {
     timer = setInterval(function() {
         countdownEl.textContent = "Timer: " + minAndSec();
-        console.log("QuizFinished: " + quizFinished);
         if (secondsLeft >= 0){
             if (quizFinished){
                 clearInterval(timer);
@@ -152,7 +158,10 @@ function setCountdownTimer() {
 
 // Show final screen with timer and high score input.
 function gameOverScreen() {
-    console.log("**********************Game Over*******************");
+    console.log("FINAL SCORE WAS: " + userPts);
+    userScoreEl.textContent = "You scored " + Math.floor(userPts) + " out of 100!";
+    questionPageEl.classList.add('not-visible')
+    endPageEl.classList.remove('not-visible');
 }
 
 function clearCard(){
@@ -172,7 +181,9 @@ function viewQuestion(question) {
          if(answer.correct){
             button.dataset.correct = answer.correct;
          }
-         button.addEventListener('click', selectAnswer);
+         button.addEventListener('click', () => {
+            selectAnswer(button.dataset.correct);
+         }, {once: true});
          answerChoicesEl.appendChild(button);
     })
 }
@@ -187,7 +198,18 @@ function nextQuestion() {
     setNextQuestion();
 }
 
-function selectAnswer() {
+function selectAnswer(userAnswer) {
+    // check if selected answer is correct
+    if (userAnswer){
+        userPts += ptsPerQuestion;
+    } else {
+        if (secondsLeft >= 5) {
+            secondsLeft -= 5;
+        } else {
+            gameOverScreen();
+        }
+    }
+    // assign right or wrong values answer verification    
     let choiceArr = Array.from(answerChoicesEl.children);
     choiceArr.forEach(button => {
         setClass(button, button.dataset.correct);
@@ -209,7 +231,6 @@ function setClass(buttonEl, correct) {
 }
 
 function clearClassStatus(eL) {
-    console.log("Clear Class: " + eL);
     eL.classList.remove('correct');
     eL.classList.remove('wrong');
 }
@@ -217,5 +238,5 @@ function clearClassStatus(eL) {
 // Event listener for clicking start button
 starButtonEl.addEventListener('click', startQuiz);
 nextButtonEl.addEventListener('click', nextQuestion);
-
+highScoreEl.addEventListener('click', gameOverScreen);
 

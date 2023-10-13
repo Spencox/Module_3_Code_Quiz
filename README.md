@@ -35,6 +35,8 @@ Mozilla. (n.d.). text-shadow. MDN Web Docs. https://developer.mozilla.org/en-US/
 
 Web.dev. (n.d.). CSS Border Animations. Web.dev. https://web.dev/css-border-animations/
 
+CITE - https://stackoverflow.com/questions/3723914/remove-eventlistener-in-javascript-after-event-occurred
+
 ## Features
 
 If your project has a lot of features, list them here.
