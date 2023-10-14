@@ -76,7 +76,7 @@ main {
     margin: 20px;
 }
 
-.start-screen p, .end-screen p, .high-scores p {
+.start-screen p, .end-screen p, .high-scores ol {
     width: 100%;
     font-size: large;
     text-align: center;

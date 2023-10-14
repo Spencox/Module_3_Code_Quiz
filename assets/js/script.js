@@ -104,6 +104,10 @@ const highScoreEl = document.getElementById('high-score');
 const endPageEl = document.getElementById('end-page');
 const userScoreEl = document.getElementById('user-score');
 const highScorePageEl = document.getElementById('high-score-page');
+const postScoreBtnEl = document.getElementById('post-score');
+const userNameEl = document.getElementById('user-name');
+const clearScoresEl = document.getElementById('clear-scores');
+const scoreListEl = document.getAnimations('scores-list');
 
 // general variables
 let randomQuestions; 
@@ -113,6 +117,7 @@ let userPts;
 let quizFinished = false;
 let timer;
 let secondsLeft = 61;
+let highScores = [];
 
 // functions
 function startQuiz() {
@@ -162,28 +167,12 @@ function gameOverScreen() {
     userScoreEl.textContent = "You scored " + Math.floor(userPts) + " out of 100!";
     questionPageEl.classList.add('not-visible')
     endPageEl.classList.remove('not-visible');
+    // button event listener for adding to high score
+    postScoreBtnEl.addEventListener('click', function(event) {
+        highScores.push({user: userNameEl.value, score: userPts});
+        localStorage.setItem("High Scores", JSON.stringify(highScores)); 
+    });
 }
-
-// post high score to local storage
-// signUpButton.addEventListener("click", function(event) {
-//     event.preventDefault();
-  
-//     var email = emailInput.value;
-//     var password = passwordInput.value;
-  
-//     if (email === "") {
-//       displayMessage("error", "Email cannot be blank");
-//     } else if (password === "") {
-//       displayMessage("error", "Password cannot be blank");
-//     } else {
-//       displayMessage("success", "Registered successfully");
-  
-//       localStorage.setItem("email", email);
-//       localStorage.setItem("password", password);
-//       renderLastRegistered();
-//     }
-//   });
-
 
 function clearCard(){
     nextButtonEl.classList.add('not-visible');
@@ -256,8 +245,30 @@ function clearClassStatus(eL) {
     eL.classList.remove('wrong');
 }
 
+function renderScores() {
+    console.log("Made it to render");
+    // Clear todoList element and update todoCountSpan
+    scoreListEl.innerHTML = "";
+    console.log(highScores.length);
+    // Render a new li for each todo
+    for (let i = 0; i < highScores.length; i++) {
+        let highScore = highScores[i];
+        console.log("highScore: " + highScore);
+        let li = document.createElement("li");
+        li.textContent = highScore;
+        scoreListEl.appendChild(li);
+    }
+}
+
 //show high scores
 function viewScores() {
+    // check local storage for scores
+    let storedScores = JSON.parse(localStorage.getItem("High Scores"));
+    console.log(storedScores);
+    if (storedScores !== null) {
+        highScores = storedScores;
+    }
+    renderScores();
     let pages = [startPageEl, questionPageEl, endPageEl, highScorePageEl]
     pages.forEach(page => {
         if (!page.classList.contains('not-visible')) {
@@ -268,7 +279,10 @@ function viewScores() {
             nextButtonEl.classList.add('not-visible');
         }
     });  
-    highScorePageEl.classList.remove('not-visible'); 
+    highScorePageEl.classList.remove('not-visible');
+    clearScoresEl.addEventListener('click', () => {
+
+    });
 }
 
 
