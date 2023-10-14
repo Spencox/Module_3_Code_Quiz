@@ -93,7 +93,7 @@ const questions = [
 ];
 
 // DOM selector variables
-const starButtonEl = document.getElementById('start');
+const startButtonEl = document.getElementById('start');
 const nextButtonEl = document.getElementById('next');
 const startPageEl = document.getElementById('start-page');
 const questionPageEl = document.getElementById('question-container');
@@ -104,6 +104,10 @@ const highScoreEl = document.getElementById('high-score');
 const endPageEl = document.getElementById('end-page');
 const userScoreEl = document.getElementById('user-score');
 const highScorePageEl = document.getElementById('high-score-page');
+const postScoreBtnEl = document.getElementById('post-score');
+const userNameEl = document.getElementById('user-name');
+const clearScoresEl = document.getElementById('clear-scores');
+const scoreListEl = document.getAnimations('scores-list');
 
 // general variables
 let randomQuestions; 
@@ -113,12 +117,13 @@ let userPts;
 let quizFinished = false;
 let timer;
 let secondsLeft = 61;
+let highScores = [];
 
 // functions
 function startQuiz() {
     countdownEl.classList.remove('not-visible');
     startPageEl.classList.add('not-visible');
-    starButtonEl.classList.add('not-visible');
+    startButtonEl.classList.add('not-visible');
     questionPageEl.classList.remove('not-visible');
     nextButtonEl.classList.remove('not-visible');
     // reset game points
@@ -162,6 +167,11 @@ function gameOverScreen() {
     userScoreEl.textContent = "You scored " + Math.floor(userPts) + " out of 100!";
     questionPageEl.classList.add('not-visible')
     endPageEl.classList.remove('not-visible');
+    // button event listener for adding to high score
+    postScoreBtnEl.addEventListener('click', function(event) {
+        highScores.push({user: userNameEl.value, score: userPts});
+        localStorage.setItem("High Scores", JSON.stringify(highScores)); 
+    });
 }
 
 function clearCard(){
@@ -235,8 +245,51 @@ function clearClassStatus(eL) {
     eL.classList.remove('wrong');
 }
 
+function renderScores() {
+    console.log("Made it to render");
+    // Clear todoList element and update todoCountSpan
+    scoreListEl.innerHTML = "";
+    console.log(highScores.length);
+    // Render a new li for each todo
+    for (let i = 0; i < highScores.length; i++) {
+        let highScore = highScores[i];
+        console.log("highScore: " + highScore);
+        let li = document.createElement("li");
+        li.textContent = highScore;
+        scoreListEl.appendChild(li);
+    }
+}
+
+//show high scores
+function viewScores() {
+    // check local storage for scores
+    let storedScores = JSON.parse(localStorage.getItem("High Scores"));
+    console.log(storedScores);
+    if (storedScores !== null) {
+        highScores = storedScores;
+    }
+    renderScores();
+    let pages = [startPageEl, questionPageEl, endPageEl, highScorePageEl]
+    pages.forEach(page => {
+        if (!page.classList.contains('not-visible')) {
+            let goBack = page;
+            console.log("Page that was showing: " + goBack.id);
+            page.classList.add('not-visible');
+            startButtonEl.classList.add('not-visible');
+            nextButtonEl.classList.add('not-visible');
+        }
+    });  
+    highScorePageEl.classList.remove('not-visible');
+    clearScoresEl.addEventListener('click', () => {
+
+    });
+}
+
+
 // Event listener for clicking start button
-starButtonEl.addEventListener('click', startQuiz);
+startButtonEl.addEventListener('click', startQuiz);
 nextButtonEl.addEventListener('click', nextQuestion);
-highScoreEl.addEventListener('click', gameOverScreen);
+highScoreEl.addEventListener('click', viewScores);
+// GO BACK BUTTON
+// CLEAR SCORES BUTTON
 

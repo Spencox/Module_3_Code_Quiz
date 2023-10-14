@@ -41,18 +41,20 @@
                     <h3 id="user-score">Toots</h3>
                     <p>Phew! The quiz is done....</p>
                     <form> 
-                        <label for="scoreboard">Enter Name or Initials</label>:
-                        <input id="scoreboard type="text" />
+                        <label for="user-name">Enter Name or Initials</label>:
+                        <input id="user-name" type="text" />
                         <button id="post-score">Submit</button>
                     </form> 
                 </div>
                 <div id='high-score-page' class="high-scores not-visible">
                     <h2>High Scores</h2>
-                    <ol>
-                        List
-                    </ol> 
+                    <ol id="scores-list"></ol> 
+                    <button id="go-back">Go Back</button>
+                    <button id="clear-scores">Clear Score</button>
+
                 </div>
         </main>
         <script src="./assets/js/script.js"></script>
     </body>
 </html>
+
