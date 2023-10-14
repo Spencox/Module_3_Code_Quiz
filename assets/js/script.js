@@ -93,7 +93,7 @@ const questions = [
 ];
 
 // DOM selector variables
-const starButtonEl = document.getElementById('start');
+const startButtonEl = document.getElementById('start');
 const nextButtonEl = document.getElementById('next');
 const startPageEl = document.getElementById('start-page');
 const questionPageEl = document.getElementById('question-container');
@@ -118,7 +118,7 @@ let secondsLeft = 61;
 function startQuiz() {
     countdownEl.classList.remove('not-visible');
     startPageEl.classList.add('not-visible');
-    starButtonEl.classList.add('not-visible');
+    startButtonEl.classList.add('not-visible');
     questionPageEl.classList.remove('not-visible');
     nextButtonEl.classList.remove('not-visible');
     // reset game points
@@ -163,6 +163,27 @@ function gameOverScreen() {
     questionPageEl.classList.add('not-visible')
     endPageEl.classList.remove('not-visible');
 }
+
+// post high score to local storage
+// signUpButton.addEventListener("click", function(event) {
+//     event.preventDefault();
+  
+//     var email = emailInput.value;
+//     var password = passwordInput.value;
+  
+//     if (email === "") {
+//       displayMessage("error", "Email cannot be blank");
+//     } else if (password === "") {
+//       displayMessage("error", "Password cannot be blank");
+//     } else {
+//       displayMessage("success", "Registered successfully");
+  
+//       localStorage.setItem("email", email);
+//       localStorage.setItem("password", password);
+//       renderLastRegistered();
+//     }
+//   });
+
 
 function clearCard(){
     nextButtonEl.classList.add('not-visible');
@@ -235,8 +256,26 @@ function clearClassStatus(eL) {
     eL.classList.remove('wrong');
 }
 
+//show high scores
+function viewScores() {
+    let pages = [startPageEl, questionPageEl, endPageEl, highScorePageEl]
+    pages.forEach(page => {
+        if (!page.classList.contains('not-visible')) {
+            let goBack = page;
+            console.log("Page that was showing: " + goBack.id);
+            page.classList.add('not-visible');
+            startButtonEl.classList.add('not-visible');
+            nextButtonEl.classList.add('not-visible');
+        }
+    });  
+    highScorePageEl.classList.remove('not-visible'); 
+}
+
+
 // Event listener for clicking start button
-starButtonEl.addEventListener('click', startQuiz);
+startButtonEl.addEventListener('click', startQuiz);
 nextButtonEl.addEventListener('click', nextQuestion);
-highScoreEl.addEventListener('click', gameOverScreen);
+highScoreEl.addEventListener('click', viewScores);
+// GO BACK BUTTON
+// CLEAR SCORES BUTTON
 
