@@ -26,90 +26,93 @@ const questions = [
             { option: '5 + 5', correct: false },
             { option: 'Error', correct: false },
         ],
-    } //,
-    // {
-    //     question: "Which function is used to print something to the console in JavaScript?",
-    //     answers: [
-    //         { option: 'print()', correct: false },
-    //         { option: 'log()', correct: false },
-    //         { option: 'console.log()', correct: true },
-    //         { option: 'display()', correct: false },
-    //     ],
-    // },
-    // {
-    //     question: "What is the value of 'null' in JavaScript?",
-    //     answers: [
-    //         { option: '0', correct: false },
-    //         { option: 'undefined', correct: false },
-    //         { option: 'false', correct: false },
-    //         { option: 'null', correct: true },
-    //     ],
-    // },
-    // {
-    //     question: "What does 'NaN' stand for in JavaScript?",
-    //     answers: [
-    //         { option: 'Not a Number', correct: true },
-    //         { option: 'No Available Number', correct: false },
-    //         { option: 'Notation of Number', correct: false },
-    //         { option: 'No Action Needed', correct: false },
-    //     ],
-    // },
-    // {
-    //     question: "Which loop is used for iterating over the properties of an object?",
-    //     answers: [
-    //         { option: 'for loop', correct: false },
-    //         { option: 'while loop', correct: false },
-    //         { option: 'for...in loop', correct: true },
-    //         { option: 'do...while loop', correct: false },
-    //     ],
-    // },
-    // {
-    //     question: "What is the result of '3 === '3' in JavaScript?",
-    //     answers: [
-    //         { option: 'true', correct: false },
-    //         { option: 'false', correct: true },
-    //         { option: 'undefined', correct: false },
-    //         { option: 'null', correct: false },
-    //     ],
-    // },
-    // {
-    //     question: "Which operator is used to combine two or more strings in JavaScript?",
-    //     answers: [
-    //         { option: '+', correct: true },
-    //         { option: '-', correct: false },
-    //         { option: '*', correct: false },
-    //         { option: '/', correct: false },
-    //     ],
-    // },
-    // {
-    //     question: "What is the correct way to write a comment in JavaScript?",
-    //     answers: [
-    //         { option: '// This is a comment', correct: true },
-    //         { option: '<!-- This is a comment -->', correct: false },
-    //         { option: '/* This is a comment */', correct: false },
-    //         { option: '# This is a comment', correct: false },
-    //     ],
-    // },
+    },
+    {
+        question: "Which function is used to print something to the console in JavaScript?",
+        answers: [
+            { option: 'print()', correct: false },
+            { option: 'log()', correct: false },
+            { option: 'console.log()', correct: true },
+            { option: 'display()', correct: false },
+        ],
+    },
+    {
+        question: "What is the value of 'null' in JavaScript?",
+        answers: [
+            { option: '0', correct: false },
+            { option: 'undefined', correct: false },
+            { option: 'false', correct: false },
+            { option: 'null', correct: true },
+        ],
+    },
+    {
+        question: "What does 'NaN' stand for in JavaScript?",
+        answers: [
+            { option: 'Not a Number', correct: true },
+            { option: 'No Available Number', correct: false },
+            { option: 'Notation of Number', correct: false },
+            { option: 'No Action Needed', correct: false },
+        ],
+    },
+    {
+        question: "Which loop is used for iterating over the properties of an object?",
+        answers: [
+            { option: 'for loop', correct: false },
+            { option: 'while loop', correct: false },
+            { option: 'for...in loop', correct: true },
+            { option: 'do...while loop', correct: false },
+        ],
+    },
+    {
+        question: "What is the result of '3 === '3' in JavaScript?",
+        answers: [
+            { option: 'true', correct: false },
+            { option: 'false', correct: true },
+            { option: 'undefined', correct: false },
+            { option: 'null', correct: false },
+        ],
+    },
+    {
+        question: "Which operator is used to combine two or more strings in JavaScript?",
+        answers: [
+            { option: '+', correct: true },
+            { option: '-', correct: false },
+            { option: '*', correct: false },
+            { option: '/', correct: false },
+        ],
+    },
+    {
+        question: "What is the correct way to write a comment in JavaScript?",
+        answers: [
+            { option: '// This is a comment', correct: true },
+            { option: '<!-- This is a comment -->', correct: false },
+            { option: '/* This is a comment */', correct: false },
+            { option: '# This is a comment', correct: false },
+        ],
+    },
 ];
 
-// DOM selector constants for manipulation
-const startButtonEl = document.getElementById('start');
-const nextButtonEl = document.getElementById('next');
+// DOM selectors for start page
 const startPageEl = document.getElementById('start-page');
+const startButtonEl = document.getElementById('start');
+const highScoreEl = document.getElementById('high-score');
+// DOM selectors for quiz pages
 const questionPageEl = document.getElementById('question-container');
 const questionEl = document.getElementById('question');
 const answerChoicesEl = document.getElementById('answer-choices');
 const countdownEl = document.getElementById('shot-clock');
-const highScoreEl = document.getElementById('high-score');
+const nextButtonEl = document.getElementById('next');
+// DOM selectors for game over or end page
 const endPageEl = document.getElementById('end-page');
-const userScoreEl = document.getElementById('user-score');
-const highScorePageEl = document.getElementById('high-score-page');
-const postScoreBtnEl = document.getElementById('post-score');
+const postScoreButtonEl = document.getElementById('post-score');
 const userNameEl = document.getElementById('user-name');
+const userScoreEl = document.getElementById('user-score');
+const labelZeroEl = document.getElementById('user-zero');
+// DOM selectors for High Score page
+const highScorePageEl = document.getElementById('high-score-page');
 const clearScoresButtonEl = document.getElementById('clear-scores');
 const goBackButtonEl = document.getElementById('go-back');
 const scoreListEl = document.getElementById('scores-list');
-const labelZeroEl = document.getElementById('user-zero');
 
 // general variables
 let randomQuestions; 
@@ -121,22 +124,19 @@ let timer;
 let secondsLeft;
 let highScores;
 
-// functions
-
 // set up the scoreboard by reading the scores in local storage
 function init() {
     // set or reset variables
     quizFinished = false;
     secondsLeft = 121;
-    highScores = [];
-    
+    highScores = [];    
     // reset elements
     startPageEl.classList.remove('not-visible');
     countdownEl.classList.add('not-visible');
     countdownEl.textContent = "Timer: " + minAndSec();
     userNameEl.classList.remove('not-visible');
-    postScoreBtnEl.classList.remove('not-visible')
-
+    postScoreButtonEl.classList.remove('not-visible')
+    highScoreEl.classList.remove('not-visible');
     // clear pages and default to start
     let pages = [questionPageEl, endPageEl, highScorePageEl]
     pages.forEach(page => {
@@ -144,7 +144,6 @@ function init() {
             page.classList.add('not-visible');
         }
     });
-  
     // clear buttons and add start
     let buttons = [nextButtonEl, clearScoresButtonEl, goBackButtonEl];
     buttons.forEach(button => {
@@ -188,6 +187,7 @@ function minAndSec() {
     return timeLeft;
 }
 
+// set up question timer
 function setCountdownTimer() {
     timer = setInterval(function() {
         if (secondsLeft >= 0){
@@ -204,13 +204,7 @@ function setCountdownTimer() {
     }, 1000);
 }
 
-function clearCard(){
-    nextButtonEl.classList.add('not-visible');
-    while (answerChoicesEl.firstChild) {
-        answerChoicesEl.removeChild(answerChoicesEl.firstChild);
-    }
-}
-
+// view quiz question card with dynamically allocated answers
 function viewQuestion(question) {
     questionEl.innerText = question.question;
     question.answers.forEach(answer => {
@@ -228,18 +222,9 @@ function viewQuestion(question) {
     })
 }
 
-function setNextQuestion(){
-    clearCard();
-    viewQuestion(randomQuestions[questionIndex]);
-}
-
-function nextQuestion() {
-    questionIndex++;
-    setNextQuestion();
-}
-
+// select answer choice and show what answer was correct
 function selectAnswer(userAnswer) {
-    // check if selected answer is correct
+    // check if selected answer is correct if incorrect drop seconds from time
     if (userAnswer){
         userPts += ptsPerQuestion;
     } else {
@@ -261,6 +246,7 @@ function selectAnswer(userAnswer) {
     }
 }
 
+// assign css classes for right(green) and wrong(red) colors
 function setClass(buttonEl, correct) {
     clearClassStatus(buttonEl);
     if (correct) {
@@ -270,9 +256,30 @@ function setClass(buttonEl, correct) {
     }
 }
 
+// remove css classes for next card
 function clearClassStatus(eL) {
     eL.classList.remove('correct');
     eL.classList.remove('wrong');
+}
+
+// hide next button till question and reset clear answer choices for next card
+function clearCard(){
+    nextButtonEl.classList.add('not-visible');
+    while (answerChoicesEl.firstChild) {
+        answerChoicesEl.removeChild(answerChoicesEl.firstChild);
+    }
+}
+
+// call to clear card and display next
+function setNextQuestion(){
+    clearCard();
+    viewQuestion(randomQuestions[questionIndex]);
+}
+
+// increment index for next question
+function nextQuestion() {
+    questionIndex++;
+    setNextQuestion();
 }
 
 // Show final screen with timer and high score input.
@@ -283,13 +290,13 @@ function gameOverScreen() {
     userScoreEl.textContent = "You scored " + Math.floor(userPts) + " out of 100!";
     if (userPts === 0) {
         userNameEl.classList.add('not-visible');
-        postScoreBtnEl.classList.add('not-visible')
+        postScoreButtonEl.classList.add('not-visible')
         labelZeroEl.textContent = "You scored zero, try again";
         goBackButtonEl.classList.remove('not-visible');
     } else {
         // button event listener for adding to high score
         labelZeroEl.textContent = "Enter Initials: ";
-        postScoreBtnEl.addEventListener('click', function() {
+        postScoreButtonEl.addEventListener('click', function() {
             highScores.push({user: userNameEl.value, score: Math.floor(userPts)});
             localStorage.setItem("High Scores", JSON.stringify(highScores)); 
         });
@@ -314,6 +321,7 @@ function viewScores() {
     clearScoresButtonEl.addEventListener('click', clearScores)
 }
 
+// allocate list elements current high score list
 function renderScores() {
     highScores.sort((a,b) => (a.score < b.score) ? 1 : -1);
     scoreListEl.innerHTML = "";
@@ -326,6 +334,7 @@ function renderScores() {
     }
 }
 
+// clear out local storage
 function clearScores() {
     highScores = [];
     localStorage.clear();
@@ -335,10 +344,8 @@ function clearScores() {
 // init function to read local storage for scores
 init();
 
-// Event listener for clicking start button
+// Event listeners for buttons and links
 startButtonEl.addEventListener('click', startQuiz);
 nextButtonEl.addEventListener('click', nextQuestion);
 highScoreEl.addEventListener('click', viewScores);
 goBackButtonEl.addEventListener('click', init);
-
-

@@ -16,6 +16,7 @@ Provide instructions and examples for use. Include screenshots as needed.
 To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
     ```md
+
     ![alt text](assets/images/screenshot.png)
     ```
 
@@ -29,15 +30,15 @@ Mozilla. (n.d.). Element.classList. MDN Web Docs. https://developer.mozilla.org/
 
 OpenAI. (2023, October 8). Create 10 random beginner level JavaScript quiz questions in the following format. ChatGPT by OpenAI. [Webpage]. https://www.chatgpt.com/blog/beginner-javascript-quiz-questions
 
-CITE - https://www.youtube.com/watch?v=Pt8RyyUWCtM
+dcode. (2018, June 19th). Dataset (dataset) Property - Javascript DOLM. YouTube. https://www.youtube.com/watch?v=Pt8RyyUWCtM
 
 Mozilla. (n.d.). text-shadow. MDN Web Docs. https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow
 
 Web.dev. (n.d.). CSS Border Animations. Web.dev. https://web.dev/css-border-animations/
 
-CITE - https://stackoverflow.com/questions/3723914/remove-eventlistener-in-javascript-after-event-occurred
+Original Poster. (2010, September 16). Remove event listener in JavaScript after the event occurred. Stack Overflow. https://stackoverflow.com/questions/3723914/remove-eventlistener-in-javascript-after-event-occurred
 
-CITE - https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
+Flavio Copes. (2016, December 6th). How to Sort an Array of Objects by Property in JavaScript. Flavio Copes. https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
 
 ## Features
 
