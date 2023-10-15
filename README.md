@@ -37,6 +37,8 @@ Web.dev. (n.d.). CSS Border Animations. Web.dev. https://web.dev/css-border-anim
 
 CITE - https://stackoverflow.com/questions/3723914/remove-eventlistener-in-javascript-after-event-occurred
 
+CITE - https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
+
 ## Features
 
 If your project has a lot of features, list them here.

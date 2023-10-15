@@ -1,0 +1,10 @@
+Required
+1. Fix GameOver CSS 
+2. fix the timer bug that shows the old time if you run out of time
+3. Randomize question answers
+4. Force timer to zero and not allow a negative number if answer is bad
+5. work on button hover
+
+
+Not required
+1.. Fix the goback to funciton

@@ -92,7 +92,7 @@ const questions = [
     // },
 ];
 
-// DOM selector variables
+// DOM selector constants for manipulation
 const startButtonEl = document.getElementById('start');
 const nextButtonEl = document.getElementById('next');
 const startPageEl = document.getElementById('start-page');
@@ -106,23 +106,66 @@ const userScoreEl = document.getElementById('user-score');
 const highScorePageEl = document.getElementById('high-score-page');
 const postScoreBtnEl = document.getElementById('post-score');
 const userNameEl = document.getElementById('user-name');
-const clearScoresEl = document.getElementById('clear-scores');
-const scoreListEl = document.getAnimations('scores-list');
+const clearScoresButtonEl = document.getElementById('clear-scores');
+const goBackButtonEl = document.getElementById('go-back');
+const scoreListEl = document.getElementById('scores-list');
+const labelZeroEl = document.getElementById('user-zero');
 
 // general variables
 let randomQuestions; 
 let questionIndex;
 let ptsPerQuestion = 100/questions.length;
 let userPts;
-let quizFinished = false;
+let quizFinished;
 let timer;
-let secondsLeft = 61;
-let highScores = [];
+let secondsLeft;
+let highScores;
 
 // functions
+
+// set up the scoreboard by reading the scores in local storage
+function init() {
+    // set or reset variables
+    quizFinished = false;
+    secondsLeft = 121;
+    highScores = [];
+    
+    // reset elements
+    startPageEl.classList.remove('not-visible');
+    countdownEl.classList.add('not-visible');
+    countdownEl.textContent = "Timer: " + minAndSec();
+    userNameEl.classList.remove('not-visible');
+    postScoreBtnEl.classList.remove('not-visible')
+
+    // clear pages and default to start
+    let pages = [questionPageEl, endPageEl, highScorePageEl]
+    pages.forEach(page => {
+        if (!page.classList.contains('not-visible')) {
+            page.classList.add('not-visible');
+        }
+    });
+  
+    // clear buttons and add start
+    let buttons = [nextButtonEl, clearScoresButtonEl, goBackButtonEl];
+    buttons.forEach(button => {
+        if(!button.classList.contains('not-visible')) {
+            button.classList.add('not-visible')
+        }
+    });
+    startButtonEl.classList.remove('not-visible');
+    // load scores in local storage if they exist
+    let storedScores = JSON.parse(localStorage.getItem("High Scores"));
+        if (storedScores !== null) {
+            highScores = storedScores;
+        }
+}
+
+// executes on "Start Game" button on start page
 function startQuiz() {
+    // show only the start page
     countdownEl.classList.remove('not-visible');
     startPageEl.classList.add('not-visible');
+    highScoreEl.classList.add('not-visible');
     startButtonEl.classList.add('not-visible');
     questionPageEl.classList.remove('not-visible');
     nextButtonEl.classList.remove('not-visible');
@@ -141,12 +184,12 @@ function minAndSec() {
     let m = Math.floor(secondsLeft/60);
     let s = secondsLeft%60;
     let timeLeft = ( (m < 10) ? "0" : "" ) + m + ":" + ( (s < 10) ? "0" : "" ) + s;
+    console.log("minAndSec Call: " + timeLeft);
     return timeLeft;
 }
 
 function setCountdownTimer() {
     timer = setInterval(function() {
-        countdownEl.textContent = "Timer: " + minAndSec();
         if (secondsLeft >= 0){
             if (quizFinished){
                 clearInterval(timer);
@@ -157,21 +200,8 @@ function setCountdownTimer() {
             clearInterval(timer);
             gameOverScreen();
         }
-
+        countdownEl.textContent = "Timer: " + minAndSec();
     }, 1000);
-}
-
-// Show final screen with timer and high score input.
-function gameOverScreen() {
-    console.log("FINAL SCORE WAS: " + userPts);
-    userScoreEl.textContent = "You scored " + Math.floor(userPts) + " out of 100!";
-    questionPageEl.classList.add('not-visible')
-    endPageEl.classList.remove('not-visible');
-    // button event listener for adding to high score
-    postScoreBtnEl.addEventListener('click', function(event) {
-        highScores.push({user: userNameEl.value, score: userPts});
-        localStorage.setItem("High Scores", JSON.stringify(highScores)); 
-    });
 }
 
 function clearCard(){
@@ -245,51 +275,70 @@ function clearClassStatus(eL) {
     eL.classList.remove('wrong');
 }
 
-function renderScores() {
-    console.log("Made it to render");
-    // Clear todoList element and update todoCountSpan
-    scoreListEl.innerHTML = "";
-    console.log(highScores.length);
-    // Render a new li for each todo
-    for (let i = 0; i < highScores.length; i++) {
-        let highScore = highScores[i];
-        console.log("highScore: " + highScore);
-        let li = document.createElement("li");
-        li.textContent = highScore;
-        scoreListEl.appendChild(li);
+// Show final screen with timer and high score input.
+function gameOverScreen() {
+    questionPageEl.classList.add('not-visible');
+    nextButtonEl.classList.add('not-visible');
+    endPageEl.classList.remove('not-visible');
+    userScoreEl.textContent = "You scored " + Math.floor(userPts) + " out of 100!";
+    if (userPts === 0) {
+        userNameEl.classList.add('not-visible');
+        postScoreBtnEl.classList.add('not-visible')
+        labelZeroEl.textContent = "You scored zero, try again";
+        goBackButtonEl.classList.remove('not-visible');
+    } else {
+        // button event listener for adding to high score
+        labelZeroEl.textContent = "Enter Initials: ";
+        postScoreBtnEl.addEventListener('click', function() {
+            highScores.push({user: userNameEl.value, score: Math.floor(userPts)});
+            localStorage.setItem("High Scores", JSON.stringify(highScores)); 
+        });
     }
 }
 
-//show high scores
+// show high scores
 function viewScores() {
-    // check local storage for scores
-    let storedScores = JSON.parse(localStorage.getItem("High Scores"));
-    console.log(storedScores);
-    if (storedScores !== null) {
-        highScores = storedScores;
-    }
     renderScores();
     let pages = [startPageEl, questionPageEl, endPageEl, highScorePageEl]
     pages.forEach(page => {
         if (!page.classList.contains('not-visible')) {
             let goBack = page;
-            console.log("Page that was showing: " + goBack.id);
             page.classList.add('not-visible');
             startButtonEl.classList.add('not-visible');
             nextButtonEl.classList.add('not-visible');
         }
     });  
     highScorePageEl.classList.remove('not-visible');
-    clearScoresEl.addEventListener('click', () => {
-
-    });
+    clearScoresButtonEl.classList.remove('not-visible');
+    goBackButtonEl.classList.remove('not-visible');
+    clearScoresButtonEl.addEventListener('click', clearScores)
 }
 
+function renderScores() {
+    highScores.sort((a,b) => (a.score < b.score) ? 1 : -1);
+    scoreListEl.innerHTML = "";
+    // Render a new li for each todo
+    for (let i = 0; i < highScores.length; i++) {
+        let highScoreText = highScores[i].user + " - " + highScores[i].score;
+        let li = document.createElement("li");
+        li.textContent = highScoreText;
+        scoreListEl.appendChild(li);
+    }
+}
+
+function clearScores() {
+    highScores = [];
+    localStorage.clear();
+    renderScores()
+}
+
+// init function to read local storage for scores
+init();
 
 // Event listener for clicking start button
 startButtonEl.addEventListener('click', startQuiz);
 nextButtonEl.addEventListener('click', nextQuestion);
 highScoreEl.addEventListener('click', viewScores);
-// GO BACK BUTTON
-// CLEAR SCORES BUTTON
+goBackButtonEl.addEventListener('click', init);
+
 

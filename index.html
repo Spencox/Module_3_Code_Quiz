@@ -13,7 +13,7 @@
         <header>
             <nav>
                 <h2>Code Quizinator</h2>
-                <h3 id="shot-clock" class="not-visible"></h3>
+                <h2 id="shot-clock" class="not-visible"></h2>
                 <h3 id="high-score">High Scores</h3>
             </nav>
         </header>
@@ -32,16 +32,12 @@
                     <h2>Coding Quiz Game</h2>
                     <p>Try to answer the coding questions within the time limit. Answer correctly and rack up points and get your name on top of the High Score Leaderboard. Answer incorrectly and lose 5 seconds off the clock and no points. Good Luck!. Press start to begin.</p> 
                 </div>
-                <div class="start-or-next">
-                    <button id="start" class="start">Start Game</button>
-                    <button id="next" class ="next not-visible">Next</button>
-                </div>
                 <div id='end-page' class="end-screen not-visible">
                     <h2>Game Over</h2>
                     <h3 id="user-score">Toots</h3>
                     <p>Phew! The quiz is done....</p>
                     <form> 
-                        <label for="user-name">Enter Name or Initials</label>:
+                        <label id="user-zero" for="user-name">Enter Initials: </label>
                         <input id="user-name" type="text" />
                         <button id="post-score">Submit</button>
                     </form> 
@@ -49,9 +45,12 @@
                 <div id='high-score-page' class="high-scores not-visible">
                     <h2>High Scores</h2>
                     <ol id="scores-list"></ol> 
-                    <button id="go-back">Go Back</button>
-                    <button id="clear-scores">Clear Score</button>
-
+                </div>
+                <div class="buttons">
+                    <button id="start" class="start">Start Game</button>
+                    <button id="next" class ="next not-visible">Next</button>
+                    <button id="go-back" class ="back not-visible">Go Back</button>
+                    <button id="clear-scores" class ="clear not-visible">Clear Scores</button>
                 </div>
         </main>
         <script src="./assets/js/script.js"></script>
