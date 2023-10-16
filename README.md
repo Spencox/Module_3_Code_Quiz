@@ -14,7 +14,7 @@ INSERT LINK
 
 Location in Github Repository:
 
-[LINK](https://github.com/Spencox/Universal-Code-Quiz.git)
+https://github.com/Spencox/Universal-Code-Quiz.git
 
 Game Play:
 
