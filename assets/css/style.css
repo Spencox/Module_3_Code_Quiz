@@ -91,6 +91,11 @@ main {
     margin: 10px;
 }
 
+#user-zero {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
 .high-scores ol {
     margin: 20px;
 }
@@ -118,8 +123,15 @@ main {
 .next, .back, .clear {
     font-weight: 600;
     font-size: 1.2em;
+    cursor: pointer;
     padding: 5px;
     margin: 10px;
+}
+
+#post-score {
+    font-weight: 600;
+    cursor: pointer;
+    margin: 5px;
 }
 
 /*------------------------------ Quiz Area ------------------------------*/
@@ -133,8 +145,6 @@ main {
     text-shadow: 1px 1px 2px navy;
     border-bottom: 2px solid navy;
 }
-
-
 
 /*------------------------------- Answers -------------------------------*/
 .answer-choice {
@@ -151,6 +161,7 @@ main {
   .answer-choice:focus {
     outline: 2px solid navy;
     outline-offset: 5px;
+    background-color: rgb(211, 221, 222);
   }
 
 .answer-choice.wrong {

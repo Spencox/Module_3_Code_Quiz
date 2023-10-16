@@ -196,7 +196,7 @@ function setCountdownTimer() {
                 gameOverScreen();
             }
         }
-        if(secondsLeft === 0) {
+        if(secondsLeft <= 0) {
             clearInterval(timer);
             gameOverScreen();
         }
@@ -228,11 +228,7 @@ function selectAnswer(userAnswer) {
     if (userAnswer){
         userPts += ptsPerQuestion;
     } else {
-        if (secondsLeft >= 5) {
-            secondsLeft -= 5;
-        } else {
-            gameOverScreen();
-        }
+        secondsLeft -= 10;
     }
     // assign right or wrong values answer verification    
     let choiceArr = Array.from(answerChoicesEl.children);
@@ -288,6 +284,7 @@ function gameOverScreen() {
     nextButtonEl.classList.add('not-visible');
     endPageEl.classList.remove('not-visible');
     userScoreEl.textContent = "You scored " + Math.floor(userPts) + " out of 100!";
+    countdownEl.classList.add('not-visible')
     if (userPts === 0) {
         userNameEl.classList.add('not-visible');
         postScoreButtonEl.classList.add('not-visible')
@@ -297,7 +294,7 @@ function gameOverScreen() {
         // button event listener for adding to high score
         labelZeroEl.textContent = "Enter Initials: ";
         postScoreButtonEl.addEventListener('click', function() {
-            highScores.push({user: userNameEl.value, score: Math.floor(userPts)});
+            highScores.push({user: userNameEl.value.toUpperCase(), score: Math.floor(userPts)});
             localStorage.setItem("High Scores", JSON.stringify(highScores)); 
         });
     }
@@ -309,12 +306,12 @@ function viewScores() {
     let pages = [startPageEl, questionPageEl, endPageEl, highScorePageEl]
     pages.forEach(page => {
         if (!page.classList.contains('not-visible')) {
-            let goBack = page;
             page.classList.add('not-visible');
             startButtonEl.classList.add('not-visible');
             nextButtonEl.classList.add('not-visible');
         }
     });  
+    highScoreEl.classList.add('not-visible');
     highScorePageEl.classList.remove('not-visible');
     clearScoresButtonEl.classList.remove('not-visible');
     goBackButtonEl.classList.remove('not-visible');

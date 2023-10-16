@@ -1,24 +1,51 @@
-# Module_3_Code_Quiz
+# Universal Code Quiz
 
 ## Description
-Code quiz game to study for jobs. 
+Code quiz that is configurable with new questions. This is an easy to use code quiz site that can be used to study for any type of coding quiz. The is a one page site that dynamically moves in an out different screens for the user. Pre-loaded with sample questions for review for potential jobs.   
 
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+I was motivated to pursue this project to learn to the DOM and make use of JavaScript to master element traversal and manipulation. I built this project to add to my professional portfolio of projects and enhance my skill set. It allows the administrator to simply copy and paste new questions in for different quizzes. I learned a lot on this project including DOM navigation, Javascript eventListener functionality, advanced CSS, how to show and hide items effectively.  
 
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+This refactored site is up at github pages:
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+INSERT LINK 
 
-    ```md
+Location in Github Repository:
 
-    ![alt text](assets/images/screenshot.png)
-    ```
+LINK
+
+Game Play:
+
+    1. Start Quiz.
+    2. 2:00 min timer set and first question presented.
+    3. Click on the question that you think is correct.
+    4. Once a selection is chosen option will turn green if correct or red if wrong.
+    5. At end of questions if you scored above 0 pts you can enter your initials for the high score page.
+    6. If user chooses an incorrect answer 10 seconds is taken off the clock.
+    7. If user finishes quiz or time runs out the game over screen is presented. 
+
+Start page is easy to navigate. The whole site is contained in the card section in the center of the page. With the exception of the "High Scores" link in the top right corner of page: 
+
+![Alt text](./assets/screenshots/Code_quiz_main.png)
+
+Question 1 appears and the timer starts in the top right part of the page at 2:00 min.
+
+![Alt text](./assets/screenshots/Code_quiz_q1.png)
+
+After user selects an answer the answers choices turn green for correct or red for wrong. A next button appears at the bottom to progress to the next question. 
+
+![Alt text](./assets/screenshots/Code_quiz_q1_answered.png)
+
+At the end of the quiz if you scored above 0 points then you can enter your initials for the high score page. 
+
+![Alt text](./assets/screenshots/Code_quiz_q1_gameover.png)
+
+The high scores page can only be accessed from the top of the start page. If you click the link you will be shown the high scores stored in local storage. User has option to clear scores. 
+
+![Alt text](./assets/screenshots/Code_quiz_q1_gameover_clear.png)
+
 
 ## Credits
 
@@ -42,5 +69,6 @@ Flavio Copes. (2016, December 6th). How to Sort an Array of Objects by Property 
 
 ## Features
 
-If your project has a lot of features, list them here.
+There are several obvious and not so obvious features of this site:
 
+LIST FEATURES
