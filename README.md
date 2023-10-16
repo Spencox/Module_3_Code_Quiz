@@ -8,13 +8,13 @@ I was motivated to pursue this project to learn to the DOM and make use of JavaS
 
 ## Usage
 
-This refactored site is up at github pages:
+https://spencox.github.io/Universal-Code-Quiz/
 
 INSERT LINK 
 
 Location in Github Repository:
 
-LINK
+[LINK](https://github.com/Spencox/Universal-Code-Quiz.git)
 
 Game Play:
 
