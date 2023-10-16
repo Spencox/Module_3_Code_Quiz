@@ -183,7 +183,6 @@ function minAndSec() {
     let m = Math.floor(secondsLeft/60);
     let s = secondsLeft%60;
     let timeLeft = ( (m < 10) ? "0" : "" ) + m + ":" + ( (s < 10) ? "0" : "" ) + s;
-    console.log("minAndSec Call: " + timeLeft);
     return timeLeft;
 }
 
