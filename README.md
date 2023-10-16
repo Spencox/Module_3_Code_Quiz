@@ -5,12 +5,9 @@ Code quiz that is configurable with new questions. This is an easy to use code q
 
 I was motivated to pursue this project to learn to the DOM and make use of JavaScript to master element traversal and manipulation. I built this project to add to my professional portfolio of projects and enhance my skill set. It allows the administrator to simply copy and paste new questions in for different quizzes. I learned a lot on this project including DOM navigation, Javascript eventListener functionality, advanced CSS, how to show and hide items effectively.  
 
-
 ## Usage
 
 https://spencox.github.io/Universal-Code-Quiz/
-
-INSERT LINK 
 
 Location in Github Repository:
 
@@ -67,8 +64,5 @@ Original Poster. (2010, September 16). Remove event listener in JavaScript after
 
 Flavio Copes. (2016, December 6th). How to Sort an Array of Objects by Property in JavaScript. Flavio Copes. https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
 
-## Features
-
-There are several obvious and not so obvious features of this site:
 
 LIST FEATURES
